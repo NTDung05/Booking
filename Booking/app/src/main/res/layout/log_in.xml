@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/ht1"
+
+    >
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOTEL BOOKING"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:layout_marginBottom="100dp"/>
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="user"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="35px"
+        />
+
+    <EditText
+        android:id="@+id/editUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_marginLeft="35px"/>
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="password"
+        android:textSize="25dp"
+        android:textColor="#E8E6E8EC"
+        android:layout_marginLeft="35px"/>
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35px"
+        android:textSize="25dp"/>
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="289dp"
+        android:layout_height="69dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/cardview_compat_inset_shadow"
+        android:text="Login"
+        android:background="@drawable/btn_log"/>
+</LinearLayout>
