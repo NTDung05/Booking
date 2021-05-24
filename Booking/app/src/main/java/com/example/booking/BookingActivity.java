@@ -25,7 +25,7 @@ public class BookingActivity extends AppCompatActivity {
     ListView lvRoom ;
     RoomAdapter customAdapter;
 private List<Room> room ;
-    String type[] = {"Phong doi","Phong don"} ;
+    String type[] = {"Phòng Đôi","Phòng Đơn", "Phòng Master"} ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +33,27 @@ private List<Room> room ;
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Booking");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Room r = new Room("101","Phòng Đôi","View Biến", "https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg");
+        Room r = new Room("101",
+                "Phòng Đôi",
+                "View Biến",
+                "https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg");
+        Room r1 = new Room("102",
+                "Phòng Đơn",
+                "View Biến",
+                "https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg");
+        Room r2 = new Room("103",
+                "Phòng Master",
+                "View Biến",
+                "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg");
+        Room r3 = new Room("104",
+                "Phòng Đôi",
+                "View Biến",
+                "https://imgur.com/a/Lz5ibqc");
      room =new ArrayList<>();
          room.add(r);
-
+        room.add(r1);
+        room.add(r2);
+        room.add(r3);
 
         setContentView(R.layout.activity_booking);
 

@@ -72,12 +72,12 @@ public class YourBookingAdapter extends BaseAdapter {
         }
 
              Booking booking = listYourBooking.get(position);
-          //   holder.tvNgayDat.setText();
-         //    holder.tvNgayTra.setText();
-           //  holder.tvLoaiPhong.setText();
-            // holder.tvGia.setText();
+             holder.tvNgayDat.setText(booking.getNdat());
+             holder.tvNgayTra.setText(booking.getNtra());
+             holder.tvLoaiPhong.setText(booking.getType());
+             holder.tvGia.setText( "Đã thanh toán: "+booking.getGia() +" VNĐ");
         Picasso.with(context)
-                .load("https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
+                .load( "https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
                 .into(holder.imgRoom);
         //bắt sự kiện xóa & sửa
 
