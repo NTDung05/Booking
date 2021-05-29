@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgAva1"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        />
+    <TextView
+        android:id="@+id/tvLoaiPhong1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgAva1"
+        android:layout_marginTop="20dp"
+        android:textSize="40dp"
+        android:layout_marginLeft="110dp"
+        android:text="Loại phòng"/>
+
+    <TextView
+        android:id="@+id/tvMota"
+        android:layout_below="@+id/tvLoaiPhong1"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Mô tả"
+        android:textSize="30dp"/>
+
+    <Button
+        android:id="@+id/btThem"
+        android:layout_below="@+id/tvMota"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="120dp"
+        android:text="Chọn phòng"/>
+
+
+</RelativeLayout>

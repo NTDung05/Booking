@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking">
         <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".YourBookingActivity" />
         <activity android:name=".BookingActivity" />
+        <activity android:name=".RoomDetailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

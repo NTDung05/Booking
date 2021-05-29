@@ -21,6 +21,7 @@
             android:layout_marginTop="20dp">
 
             <ImageView
+                android:id="@+id/imgAva"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="9dp"
@@ -45,17 +46,30 @@
             android:textColor="@color/white"
             android:textSize="32sp" />
 
-
         <ImageView
-            android:id="@+id/imgEdProfile"
-            android:layout_width="35dp"
-            android:layout_height="36dp"
+            android:id="@+id/imgProfile"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginRight="113dp"
+            android:layout_toLeftOf="@+id/imgUser"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:src="@drawable/pencil" />
+
+        <ImageView
+            android:id="@+id/imgEdProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:adjustViewBounds="true"
+            android:rotation="0"
+            android:scaleType="centerInside"
+           android:src="@drawable/ic_baseline_done_24" />
+
 
     </RelativeLayout>
 
@@ -74,36 +88,6 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tài Khoản"
-                    android:textColor="@color/headings"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/tvTaiKhoan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:editable="true"
-                    android:fontFamily="sans-serif-light"
-                    android:text="zunzunn"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/grey" />
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,14 +100,74 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
-                    android:id="@+id/tvHoTen"
+                <EditText
+                    android:id="@+id/edHoTen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="Nguyễn Tiến Dũng"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@null"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tài Khoản"
+                    android:textColor="@color/headings"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/edTaiKhoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="zunzunn"
+
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:background="@null"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textColor="@color/headings"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/edPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:hint="Nhập pass"
+                    />
 
                 <View
                     android:layout_width="match_parent"
@@ -133,6 +177,37 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xác nhận Password"
+                    android:textColor="@color/headings"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/edConfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="Vui lòng nhập lại mật khẩu"
+                    android:inputType="textPassword"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:background="@null"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -147,14 +222,17 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
-                    android:id="@+id/tvPhone"
+                <EditText
+                    android:id="@+id/edPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="+84 941 853 369"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@null"
+
+                    />
 
                 <View
                     android:layout_width="match_parent"
@@ -177,13 +255,15 @@
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/edEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="N17DCCN022@gmail.com"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:background="@null"/>
 
                 <View
                     android:layout_width="match_parent"

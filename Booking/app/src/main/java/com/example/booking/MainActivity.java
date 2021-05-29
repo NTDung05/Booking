@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.booking.Model.Customer;
+import com.example.booking.Model.Users;
+
 public class MainActivity extends AppCompatActivity {
 
     ImageButton btBooking, btYBooking, btYProfile, btLocation;
@@ -23,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("BOOKING HOTEL");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        Users users = new Users("test","test1");
+        int phone =  Integer.parseInt("0941853369");
+        Customer customer = new Customer(1,"Dung",
+                "Tiến",phone,"ntd051099@gmil.com", users);
         setContentView(R.layout.action_user);
         setControl();
-        setEvent();
+        setEvent(customer);
     }
 
     private void setControl() {
@@ -36,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btLocation = (ImageButton) findViewById(R.id.btLocation);
     }
 
-    private void setEvent() {
+    private void setEvent(Customer customer) {
         btBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("customer", customer);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

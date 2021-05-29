@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
     private String code;
-    private String type;
+    private Room_type type;
     private String description;
     private String avatar;
 
-    public Room(String code, String type, String description, String avatar) {
+    public Room(String code, Room_type type, String description, String avatar) {
         this.code = code;
         this.type = type;
         this.description = description;
@@ -23,11 +23,11 @@ public class Room implements Serializable {
         this.code = code;
     }
 
-    public String getType() {
+    public Room_type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Room_type type) {
         this.type = type;
     }
 

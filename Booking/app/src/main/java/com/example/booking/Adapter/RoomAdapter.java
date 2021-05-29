@@ -73,7 +73,15 @@ public class RoomAdapter extends BaseAdapter {
         Room room = listRoom.get(position);
 
         holder.tvCode.setText(String.valueOf(room.getCode()));
-        holder.tvType.setText(room.getType().toString());
+        if(room.getType().getNumber_of_bed()==1){
+            holder.tvType.setText("Phòng Đơn");
+        };
+        if(room.getType().getNumber_of_bed()==2){
+            holder.tvType.setText("Phòng Đôi");
+        };
+        if(room.getType().getNumber_of_bed()==3){
+            holder.tvType.setText("Phòng Master");
+        };
         holder.tvDescription.setText(room.getDescription().toString());
         Picasso.with(context)
                 .load(room.getAvatar())
