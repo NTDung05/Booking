@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.booking.Adapter.RoomAdapter;
+import com.example.booking.Model.Price;
 import com.example.booking.Model.Room;
 import com.example.booking.Model.Room_type;
 
@@ -24,6 +26,7 @@ import java.util.List;
 public class BookingActivity extends AppCompatActivity {
 
     Button btnSearch;
+    EditText edngaydat, edngaytra;
     Spinner spTypeRoom;
     ListView lvRoom ;
     RoomAdapter customAdapter;
@@ -40,14 +43,16 @@ private List<Room> room ;
         Room_type t1 = new Room_type(1, 1);  //Phòng đơn
         Room_type t2 = new Room_type(2, 2); //Phòng đôi
         Room_type t3 = new Room_type(3, 3); // Phòng Mster
+        Price p1 = new Price(t1,1, 5000);
+        Price p2 = new Price(t3 ,0, 2000);
         Room r = new Room("101", t1, "View Biến",
-                "https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg");
+                "https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg",1);
         Room r1 = new Room("102", t1, "View Biến",
-                "https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg");
+                "https://www.italianbark.com/wp-content/uploads/2018/01/hotel-room-design-trends-italianbark-interior-design-blog.jpg",1);
         Room r2 = new Room("103", t3, "View Núi",
-                "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg");
+                "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg",1);
         Room r3 = new Room("104", t2, "View Biến",
-                "https://imgur.com/a/Lz5ibqc");
+                "https://imgur.com/a/Lz5ibqc",1);
      room =new ArrayList<>();
          room.add(r);
         room.add(r1);
@@ -92,6 +97,8 @@ private List<Room> room ;
         btnSearch = (Button) findViewById(R.id.btnSearch);
         spTypeRoom  = (Spinner) findViewById(R.id.spTypeRoom);
         lvRoom = (ListView) findViewById(R.id.lvRoom);
+        edngaydat = (EditText)findViewById(R.id.edNgaydat);
+        edngaytra = (EditText)findViewById(R.id.edNgaytra);
     }
 
     public void setEvent(List<Room> room1, List<Room> room2,List<Room> room3){
@@ -101,6 +108,7 @@ private List<Room> room ;
 
        }
    });
+   
 
    spTypeRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
        @Override

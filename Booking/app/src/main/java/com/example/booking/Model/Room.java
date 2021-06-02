@@ -7,12 +7,22 @@ public class Room implements Serializable {
     private Room_type type;
     private String description;
     private String avatar;
+    private  int status;
 
-    public Room(String code, Room_type type, String description, String avatar) {
+    public Room(String code, Room_type type, String description, String avatar, int status) {
         this.code = code;
         this.type = type;
         this.description = description;
         this.avatar = avatar;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getCode() {
