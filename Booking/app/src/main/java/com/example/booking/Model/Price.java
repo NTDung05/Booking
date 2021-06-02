@@ -1,6 +1,8 @@
 package com.example.booking.Model;
 
-public class Price {
+import java.io.Serializable;
+
+public class Price implements Serializable {
      private Room_type type_id;
      private int weekend;
      private int price;

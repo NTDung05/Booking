@@ -13,13 +13,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.booking.Model.Customer;
+import com.example.booking.Model.Price;
 import com.example.booking.Model.Room;
 import com.squareup.picasso.Picasso;
 
 public class RoomDetailActivity extends AppCompatActivity {
     Room room;
+    Price price;
     ImageView imgAva1;
-    TextView tvLoaiPhong1, tvMota;
+    TextView tvLoaiPhong1, tvMota, tvGia;
     Button btThem;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class RoomDetailActivity extends AppCompatActivity {
         Bundle bundle = myintent.getExtras();
         if (bundle != null) {
             room = (Room) bundle.getSerializable("test1");
+            price = (Price)bundle.getSerializable("price1");
         }
         setContentView(R.layout.activity_room_detail);
         setControl();
@@ -51,6 +54,7 @@ private void setControl(){
    tvLoaiPhong1 = (TextView)findViewById(R.id.tvLoaiPhong1);
    tvMota = (TextView)findViewById(R.id.tvMota);
    btThem = (Button)findViewById(R.id.btThem);
+   tvGia = (TextView)findViewById(R.id.tvGia);
 }
 private  void setEvent(Room room){
     Picasso.with(getApplicationContext())
@@ -65,7 +69,9 @@ private  void setEvent(Room room){
     if(room.getType().getNumber_of_bed()==3){
         tvLoaiPhong1.setText("Phòng Master");
     };
-    tvMota.setText(room.getDescription().toString());
+    tvMota.setText("Mô tả: "+room.getDescription().toString());
+
+    tvGia.setText("Giá: "+String.valueOf(price.getPrice())+" VNĐ");
     btThem.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

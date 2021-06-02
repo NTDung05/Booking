@@ -34,8 +34,8 @@ import java.util.Locale;
 
 public class BookingActivity extends AppCompatActivity {
     private int lastSelectedYear = 2021;
-    private int lastSelectedMonth=6;
-    private int lastSelectedDayOfMonth=10;
+    private int lastSelectedMonth = 6;
+    private int lastSelectedDayOfMonth = 10;
     Button btnSearch;
     EditText edngaydat, edngaytra;
     Spinner spTypeRoom;
@@ -120,34 +120,9 @@ public class BookingActivity extends AppCompatActivity {
     }
 
 
-
     public void setEvent(List<Room> room1, List<Room> room2, List<Room> room3) {
 
-       edngaydat.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-                   @Override
-                   public void onDateSet(DatePicker view, int year,
-                                         int monthOfYear, int dayOfMonth) {
-
-                       edngaydat.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
-                       lastSelectedYear = year;
-                       lastSelectedMonth = monthOfYear;
-                       lastSelectedDayOfMonth = dayOfMonth;
-                   }
-               };
-
-               DatePickerDialog datePickerDialog = null;
-               datePickerDialog = new DatePickerDialog(BookingActivity.this,
-                       dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
-               datePickerDialog.show();
-
-           }
-       });
-       edngaytra.setOnClickListener(new View.OnClickListener() {
+        edngaydat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -157,6 +132,30 @@ public class BookingActivity extends AppCompatActivity {
                                           int monthOfYear, int dayOfMonth) {
 
                         edngaydat.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        lastSelectedYear = year;
+                        lastSelectedMonth = monthOfYear;
+                        lastSelectedDayOfMonth = dayOfMonth;
+                    }
+                };
+
+                DatePickerDialog datePickerDialog = null;
+                datePickerDialog = new DatePickerDialog(BookingActivity.this,
+                        dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
+                datePickerDialog.show();
+
+            }
+        });
+        edngaytra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+
+                        edngaytra.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
                         lastSelectedYear = year;
                         lastSelectedMonth = monthOfYear;
@@ -194,10 +193,6 @@ public class BookingActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
-
-
-
         spTypeRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -209,9 +204,11 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room test1 = room1.get(position);
-                            Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
+                            Price price1 = new Price(test1.getType(), 1, 5000);
+                             Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("test1", test1);
+                            bundle.putSerializable("price1", price1);
                             intent.putExtras(bundle);
                             startActivity(intent);
                         }
