@@ -2,6 +2,7 @@ package com.example.booking;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -11,16 +12,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.booking.Api.ApiService;
 import com.example.booking.Model.Customer;
+import com.example.booking.Model.CustomerTest;
 import com.example.booking.Model.Users;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class EditProfileActivity extends AppCompatActivity {
     ImageView imgProfile, imgAva, imgEdProfile;
     EditText edTaiKhoan, edHoTen, edPhone, edEmail, edPassword, edConfirm;
-    Users users;
-    Customer customer;
+    Users users = new Users();
+
+    CustomerTest customer  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +39,17 @@ public class EditProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.activity_edit_profile);
-        users = new Users();
+
         Intent myintent = getIntent();
         Bundle bundle = myintent.getExtras();
         if (bundle != null) {
-            customer = (Customer) bundle.getSerializable("customer");
+            customer = (CustomerTest) bundle.getSerializable("customer");
         }
         setControl();
-        setEvent(users, customer);
+        callApi();
 
+        setEvent();
+        
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -64,13 +74,43 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     }
+ private void callApi(){
+     ApiService.API_SERVICE.convertUser("tien156").enqueue(new Callback<Users>() {
+         @Override
+         public void onResponse(Call<Users> call, Response<Users> response) {
+             Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
+             users = response.body();
+             edPassword.setText(users.getPassword());
+             edConfirm.setText(users.getPassword());
+         }
 
-    public void setEvent(Users users, Customer customer) {
+         @Override
+         public void onFailure(Call<Users> call, Throwable t) {
+             Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_LONG).show();
+         }
+     });
+ }
+    private void callApiUpdate(){
+        ApiService.API_SERVICE.UpdateCustomer(2,customer).enqueue(new Callback<CustomerTest>() {
+                    @Override
+                    public void onResponse(Call<CustomerTest> call, Response<CustomerTest> response) {
+                        Toast.makeText(getApplicationContext(), "Update thành công 123", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<CustomerTest> call, Throwable t) {
+                     //   Toast.makeText(getApplicationContext(), "Thử lại", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+    public void setEvent() {
         if (customer != null) {
-            edTaiKhoan.setText(customer.getUsername().getUserName().toString());
+            edTaiKhoan.setText(customer.getUsername().toString());
             edEmail.setText(customer.getEmail().toString());
             edHoTen.setText(customer.getLastName().toString() +" "+ customer.getFirstName().toString());
             edPhone.setText(String.valueOf(customer.getPhone()));
+           // edPassword.setText(users.getPassword());
 
         }
 
@@ -86,21 +126,18 @@ public class EditProfileActivity extends AppCompatActivity {
                 customer.setEmail(edEmail.getText().toString());
                 String phone="";
                 phone = edPhone.getText().toString().trim();
-                customer.setPhone(Integer.parseInt(phone));
-                customer.setUsername(users);
+                customer.setPhone(phone.trim());
+              //  customer.setUsername(users.getUserName());
                 String hoten = edHoTen.getText().toString();
                 int i = hoten.lastIndexOf(" ");
                 String first = hoten.substring(i + 1);
                 String last = hoten.substring(0, i);
                 customer.setFirstName(first);
                 customer.setLastName(last);
-                customer.setId(1);
+
                 if (check.get()==true) {
-                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("customer", customer);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Update thành công", Toast.LENGTH_LONG).show();
+                    callApiUpdate();
 
                 }
                 if (check.get()==false) {
@@ -112,4 +149,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     }
+
+
 }

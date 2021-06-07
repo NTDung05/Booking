@@ -15,10 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.booking.Model.Customer;
 import com.example.booking.Model.Price;
 import com.example.booking.Model.Room;
+import com.example.booking.Model.Room_type;
 import com.squareup.picasso.Picasso;
 
 public class RoomDetailActivity extends AppCompatActivity {
-    Room room;
+    Room_type room;
     Price price;
     ImageView imgAva1;
     TextView tvLoaiPhong1, tvMota, tvGia;
@@ -32,12 +33,12 @@ public class RoomDetailActivity extends AppCompatActivity {
         Intent myintent = getIntent();
         Bundle bundle = myintent.getExtras();
         if (bundle != null) {
-            room = (Room) bundle.getSerializable("test1");
-            price = (Price)bundle.getSerializable("price1");
+            room = (Room_type) bundle.getSerializable("test1");
+
         }
         setContentView(R.layout.activity_room_detail);
         setControl();
-        setEvent(room);
+        setEvent();
 }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -56,22 +57,31 @@ private void setControl(){
    btThem = (Button)findViewById(R.id.btThem);
    tvGia = (TextView)findViewById(R.id.tvGia);
 }
-private  void setEvent(Room room){
-    Picasso.with(getApplicationContext())
-            .load(room.getAvatar())
-            .into(imgAva1);
-    if(room.getType().getNumber_of_bed()==1){
-        tvLoaiPhong1.setText("Phòng Đơn");
-    };
-    if(room.getType().getNumber_of_bed()==2){
-        tvLoaiPhong1.setText("Phòng Đôi");
-    };
-    if(room.getType().getNumber_of_bed()==3){
-        tvLoaiPhong1.setText("Phòng Master");
-    };
-    tvMota.setText("Mô tả: "+room.getDescription().toString());
+private  void setEvent(){
+    if(room.getName().equals("Superior")){
+        Picasso.with(getApplicationContext())
+                .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-02.jpg")
+                .into(imgAva1);}
+    if(room.getName().equals("Standard")){
+        Picasso.with(getApplicationContext())
+                .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-01.jpg")
+                .into(imgAva1);}
+    if(room.getName().equals("Deluxe")){
+        Picasso.with(getApplicationContext())
+                .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-03.jpg")
+                .into(imgAva1);}
+    if(room.getName().equals("Suite")){
+        Picasso.with(getApplicationContext())
+                .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-04.jpg")
+                .into(imgAva1);}
+    if(room.getName().equals("Suite")){
+        Picasso.with(getApplicationContext())
+                .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-05.jpg")
+                .into(imgAva1);}
+    tvLoaiPhong1.setText(room.getName());
+    tvMota.setText("Mô tả: "+" Phòng có "+String.valueOf(room.getNumber_of_bed())+"giường "+"\n"+room.getDescription());
 
-    tvGia.setText("Giá: "+String.valueOf(price.getPrice())+" VNĐ");
+    tvGia.setText("Giá: "+String.valueOf(room.getPrice())+" VNĐ");
     btThem.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

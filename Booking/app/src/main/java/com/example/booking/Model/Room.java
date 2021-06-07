@@ -1,15 +1,22 @@
 package com.example.booking.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Room implements Serializable {
+    @SerializedName("roomCode")
     private String code;
-    private Room_type type;
+    @SerializedName("numberOfBed")
+    private int type;
+    @SerializedName("description")
     private String description;
+    @SerializedName("image")
     private String avatar;
-    private  int status;
+    @SerializedName("status")
+    private  String status;
 
-    public Room(String code, Room_type type, String description, String avatar, int status) {
+    public Room(String code, int type, String description, String avatar, String status) {
         this.code = code;
         this.type = type;
         this.description = description;
@@ -17,11 +24,11 @@ public class Room implements Serializable {
         this.status = status;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -33,11 +40,11 @@ public class Room implements Serializable {
         this.code = code;
     }
 
-    public Room_type getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Room_type type) {
+    public void setType(int type) {
         this.type = type;
     }
 

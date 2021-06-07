@@ -11,12 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.booking.Api.ApiService;
 import com.example.booking.Model.Customer;
+import com.example.booking.Model.CustomerTest;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
     ImageView imgProfile;
-    TextView tvTaiKhoan, tvPhone, tvHoTen;
+    TextView tvTaiKhoan, tvPhone, tvHoTen, tvEmail;
     Customer customer;
+   private    CustomerTest customerTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +36,14 @@ public class ProfileActivity extends AppCompatActivity {
         Intent myintent = getIntent();
         Bundle bundle = myintent.getExtras();
         if (bundle != null) {
-            customer = (Customer) bundle.getSerializable("customer");
+            customerTest = (CustomerTest) bundle.getSerializable("customer");
         }
+
         setControl();
-        setEvent(customer);
+
+
+
+        setEvent();
 
     }
 
@@ -41,14 +52,21 @@ public class ProfileActivity extends AppCompatActivity {
         tvTaiKhoan = (TextView) findViewById(R.id.tvTaiKhoan);
         tvPhone = (TextView) findViewById(R.id.tvPhone);
         tvHoTen =(TextView)findViewById(R.id.tvHoTen);
+        tvEmail = (TextView)findViewById(R.id.tvEmail);
     }
 
-    public void setEvent(Customer customer) {
-        if (customer != null) {
-            tvPhone.setText(String.valueOf(customer.getPhone()));
-            tvTaiKhoan.setText(customer.getUsername().getUserName().toString());
-            tvHoTen.setText(customer.getLastName().toString()+" "+customer.getFirstName().toString());
+    public void setEvent() {
+
+        if (customerTest != null) {
+            tvTaiKhoan.setText(customerTest.getUsername().toString());
+            tvEmail.setText(customerTest.getEmail().toString());
+            tvHoTen.setText(customerTest.getLastName().toString() +" "+ customerTest.getFirstName().toString());
+            tvPhone.setText(String.valueOf(customerTest.getPhone()));
+
+
         }
+
+
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -56,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Ok", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("customer", customer);
+                bundle.putSerializable("customer",  customerTest);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -74,4 +92,5 @@ public class ProfileActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

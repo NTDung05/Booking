@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.booking.BookingActivity;
 import com.example.booking.Model.Room;
+import com.example.booking.Model.Room_type;
 import com.example.booking.R;
 import com.example.booking.YourBookingActivity;
 import com.squareup.picasso.Picasso;
@@ -19,9 +20,9 @@ import java.util.List;
 public class RoomAdapter extends BaseAdapter {
     private BookingActivity context;
     private int layout;
-    private List<Room> listRoom;
+    private List<Room_type> listRoom;
 
-    public RoomAdapter(BookingActivity context, int layout, List<Room> listRoom) {
+    public RoomAdapter(BookingActivity context, int layout, List<Room_type> listRoom) {
         this.context = context;
         this.layout = layout;
         this.listRoom = listRoom;
@@ -70,22 +71,34 @@ public class RoomAdapter extends BaseAdapter {
 
 
 
-        Room room = listRoom.get(position);
+        Room_type room = listRoom.get(position);
 
-        holder.tvCode.setText(String.valueOf(room.getCode()));
-        if(room.getType().getNumber_of_bed()==1){
-            holder.tvType.setText("Phòng Đơn");
-        };
-        if(room.getType().getNumber_of_bed()==2){
-            holder.tvType.setText("Phòng Đôi");
-        };
-        if(room.getType().getNumber_of_bed()==3){
-            holder.tvType.setText("Phòng Master");
-        };
-        holder.tvDescription.setText(room.getDescription().toString());
+        holder.tvType.setText(String.valueOf("Số Giường: "+String.valueOf(room.getNumber_of_bed())));
+
+            holder.tvCode.setText("Loại Phòng: "+room.getName());
+
+
+        holder.tvDescription.setText(String.valueOf(room.getPrice()));
+        if(room.getName().equals("Superior")){
         Picasso.with(context)
-                .load(room.getAvatar())
-                .into(holder.imgAvatar);
+                .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-02.jpg")
+                .into(holder.imgAvatar);}
+        if(room.getName().equals("Standard")){
+            Picasso.with(context)
+                    .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-01.jpg")
+                    .into(holder.imgAvatar);}
+        if(room.getName().equals("Deluxe")){
+            Picasso.with(context)
+                    .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-03.jpg")
+                    .into(holder.imgAvatar);}
+        if(room.getName().equals("Suite")){
+            Picasso.with(context)
+                    .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-04.jpg")
+                    .into(holder.imgAvatar);}
+        if(room.getName().equals("Suite")){
+            Picasso.with(context)
+                    .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-05.jpg")
+                    .into(holder.imgAvatar);}
 
         return convertView;
     }

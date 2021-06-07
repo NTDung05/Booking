@@ -14,25 +14,38 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.booking.Api.ApiService;
+
+
 import com.example.booking.Model.Customer;
-import com.example.booking.Model.Users;
+import com.example.booking.Model.CustomerTest;
+import com.example.booking.Model.Room;
+import com.example.booking.Model.Room_type;
+import com.example.booking.*;
+import java.io.Serializable;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageButton btBooking, btYBooking, btYProfile, btLocation;
+    CustomerTest customerTest;
+    List<Room_type> room;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("BOOKING HOTEL");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Users users = new Users("test","test1");
-        int phone =  Integer.parseInt("0941853369");
-        Customer customer = new Customer(1,"Dung",
-                "Tiến",phone,"ntd051099@gmil.com", users);
+          customerTest = new CustomerTest();
         setContentView(R.layout.action_user);
         setControl();
-        setEvent(customer);
+        callApi();
+
+        setEvent();
     }
 
     private void setControl() {
@@ -42,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
         btLocation = (ImageButton) findViewById(R.id.btLocation);
     }
 
-    private void setEvent(Customer customer) {
+    private void setEvent() {
         btBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("room", (Serializable) room);
+//                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -62,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("customer", customer);
+                bundle.putSerializable("customer", customerTest);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -110,4 +126,26 @@ public class MainActivity extends AppCompatActivity {
         });
         dialogXoa.show();
     }
+    private  void callApi(){
+
+        ApiService.API_SERVICE.convertCustomer("tien156").enqueue(new Callback<CustomerTest>() {
+
+            @Override
+            public void onResponse(Call<CustomerTest> call, Response<CustomerTest> response ) {
+                Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_LONG).show();
+
+                customerTest  = response.body();
+
+
+
+
+            }
+            @Override
+            public void onFailure(Call<CustomerTest> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
 }

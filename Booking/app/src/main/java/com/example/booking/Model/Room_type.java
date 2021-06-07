@@ -1,27 +1,17 @@
 package com.example.booking.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Room_type  implements Serializable {
 
-    private int id;
+     @SerializedName("numberOfBed")
     private int number_of_bed;
-
-    public Room_type(int id, int number_of_bed) {
-        this.id = id;
-        this.number_of_bed = number_of_bed;
-    }
-
-    public Room_type() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private  String name;
+    @SerializedName("desciption")
+    private  String description;
+    private int price;
 
     public int getNumber_of_bed() {
         return number_of_bed;
@@ -29,5 +19,29 @@ public class Room_type  implements Serializable {
 
     public void setNumber_of_bed(int number_of_bed) {
         this.number_of_bed = number_of_bed;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

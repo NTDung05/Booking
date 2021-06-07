@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
 
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imgAva1"
@@ -22,7 +25,7 @@
     <TextView
     android:id="@+id/tvMota"
     android:layout_below="@+id/tvLoaiPhong1"
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:text="Mô tả"
@@ -31,20 +34,42 @@
     <TextView
         android:id="@+id/tvGia"
         android:layout_below="@+id/tvMota"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="Giá: "
         android:textSize="30dp"/>
+    <TextView
+        android:id="@+id/tvSoluong"
+        android:layout_below="@+id/tvGia"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Số lượng: "
+        android:textSize="30dp"/>
+    <EditText
+
+        android:id="@+id/edSoluong"
+        android:layout_toRightOf="@+id/tvSoluong"
+    android:layout_below="@id/tvGia"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textStyle="normal"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:background="@drawable/border"
+        />
 
     <Button
         android:id="@+id/btThem"
-        android:layout_below="@+id/tvGia"
+        android:layout_below="@+id/edSoluong"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="120dp"
         android:text="Chọn phòng"/>
-
-
 </RelativeLayout>
+
+
+
+</ScrollView>
