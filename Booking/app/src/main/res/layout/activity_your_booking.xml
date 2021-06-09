@@ -6,9 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".YourBookingActivity"
     android:padding="20dp"
-    android:background="@drawable/bckground"
+    android:background="@drawable/bck_group"
+    android:orientation="vertical"
 
     >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Lịch sử đặt phòng"
+        android:textSize="40dp"
+        android:textColor="@color/teal_700"/>
+
     <ListView
         android:id="@+id/lvYourBooking"
         android:layout_width="match_parent"

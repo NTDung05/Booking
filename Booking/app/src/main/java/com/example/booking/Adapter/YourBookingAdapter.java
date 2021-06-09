@@ -10,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import androidx.core.content.ContextCompat;
+
 import com.example.booking.BookingActivity;
 import com.example.booking.Model.Booking;
+import com.example.booking.Model.Booking_card;
 import com.example.booking.Model.Room;
 import com.example.booking.R;
 import com.example.booking.YourBookingActivity;
@@ -24,9 +27,9 @@ public class YourBookingAdapter extends BaseAdapter {
 
     private YourBookingActivity context;
     private int layout;
-    private List<Booking> listYourBooking;
+    private List<Booking_card> listYourBooking;
 
-    public YourBookingAdapter(YourBookingActivity context, int layout, List<Booking> listYourBooking) {
+    public YourBookingAdapter(YourBookingActivity context, int layout, List<Booking_card> listYourBooking) {
         this.context = context;
         this.layout = layout;
         this.listYourBooking = listYourBooking;
@@ -48,7 +51,7 @@ public class YourBookingAdapter extends BaseAdapter {
     }
 
     private class ViewHolder{
-        TextView tvNgayDat,tvNgayTra,tvLoaiPhong,tvGia;
+        TextView tvID,tvNgayDat,tvNgayTra,tvLoaiPhong,tvGia;
         ImageView imgRoom;
     }
 
@@ -60,8 +63,9 @@ public class YourBookingAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);
-            holder.tvNgayDat = (TextView) convertView.findViewById(R.id.tvNgayDat);
-            holder.tvNgayTra = (TextView) convertView.findViewById(R.id.tvNgayTra);
+     //       holder.tvNgayDat = (TextView) convertView.findViewById(R.id.tvNgayDat);
+     //       holder.tvNgayTra = (TextView) convertView.findViewById(R.id.tvNgayTra);
+            holder.tvID = (TextView) convertView.findViewById(R.id.tvID);
             holder.tvLoaiPhong= (TextView) convertView.findViewById(R.id.tvLoaiPhong);
             holder.tvGia= (TextView) convertView.findViewById(R.id.tvGia);
             holder.imgRoom = (ImageView) convertView.findViewById(R.id.imgRoom);
@@ -71,17 +75,33 @@ public class YourBookingAdapter extends BaseAdapter {
             holder= (ViewHolder) convertView.getTag();
         }
 
-             Booking booking = listYourBooking.get(position);
-             holder.tvNgayDat.setText(booking.getNdat());
-             holder.tvNgayTra.setText(booking.getNtra());
-             holder.tvLoaiPhong.setText(booking.getType());
-             holder.tvGia.setText( "Đã thanh toán: "+booking.getGia() +" VNĐ");
-        Picasso.with(context)
-                .load( "https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
-                .into(holder.imgRoom);
-        //bắt sự kiện xóa & sửa
+             Booking_card booking = listYourBooking.get(position);
+                    holder.tvID.setText("Mã HĐ: "+String.valueOf(booking.getId()));
+                    holder.tvGia.setText("Tổng Tiền:"+String.valueOf(booking.getPrice())+" VNĐ");
+                    holder.tvLoaiPhong.setText(booking.getStatus());
 
 
+
+          if(booking.getStatus().equals("Reservated")){
+
+                 holder.imgRoom.setImageResource(R.drawable.baseline_event_available_white_24dp);
+              holder.imgRoom.setColorFilter(ContextCompat.getColor(context,
+                      R.color.gradEnd),android.graphics.PorterDuff.Mode.MULTIPLY);
+                }
+       else if(booking.getStatus().equals("Done")){
+      holder.imgRoom.setImageResource(R.drawable.baseline_done_all_white_24dp);
+              holder.imgRoom.setColorFilter(ContextCompat.getColor(context,
+                      R.color.gradEnd),android.graphics.PorterDuff.Mode.MULTIPLY);}
+          else if(booking.getStatus().equals("Cancel")) {
+
+
+              holder.imgRoom.setImageResource(R.drawable.baseline_do_disturb_alt_white_24dp);
+
+              //bắt sự kiện xóa & sửa
+              holder.imgRoom.setColorFilter(ContextCompat.getColor(context,
+                      R.color.red),android.graphics.PorterDuff.Mode.MULTIPLY);
+
+          }
         return convertView;
     }
 }

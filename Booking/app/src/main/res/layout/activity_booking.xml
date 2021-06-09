@@ -20,29 +20,39 @@
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:gravity="center">
+
         <Spinner
             android:id="@+id/spTypeRoom"
-            android:layout_width="280dp"
+            android:layout_width="303dp"
             android:layout_height="80dp"
             android:spinnerMode="dropdown"
-            android:text="Moi chọn thuoc" />
+            android:text="Chọn số giường"
+            android:textAlignment="center"
+            />
+
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:hint="Tìm"
+            android:layout_marginLeft="20dp"
             android:inputType="number"
-            android:shadowColor="@color/teal_700"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/gradEnd"
             android:background="@drawable/circle"/>
     </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="50dp"
+    android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:gravity="bottom"
-        android:text="Ngày nhận phòng" />
+        android:textSize="20dp"
+        android:text="Ngày nhận phòng"
+        android:textStyle="bold"/>
     <EditText
         android:id="@+id/edNgaydat"
         android:layout_width="match_parent"
@@ -51,14 +61,17 @@
         />
 </LinearLayout>
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
         <TextView
-            android:layout_width="110dp"
+            android:layout_width="159dp"
             android:layout_height="40dp"
             android:gravity="bottom"
-            android:text="Ngày trả phòng" />
+            android:text="Ngày trả phòng"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
         <EditText
             android:id="@+id/edNgaytra"
             android:layout_width="match_parent"
@@ -85,11 +98,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
+
          android:layout_alignParentBottom="true"
-        app:itemBackground="@color/teal_700"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/custom_color_bottom"
+        app:itemTextColor="@color/custom_color_bottom"
         app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

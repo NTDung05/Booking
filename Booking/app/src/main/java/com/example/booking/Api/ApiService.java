@@ -1,5 +1,7 @@
 package com.example.booking.Api;
 
+import com.example.booking.Model.Booking_Detail;
+import com.example.booking.Model.Booking_card;
 import com.example.booking.Model.Customer;
 import com.example.booking.Model.CustomerTest;
 import com.example.booking.Model.Room;
@@ -16,6 +18,7 @@ import retrofit2.Converter.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -37,4 +40,19 @@ public interface ApiService {
 
     @GET("api/types/{time}")
     Call<List<Room_type>> GetListTypeRoom(@Path("time") int time);
+
+    @POST("api/bookingDetail")
+    Call<Booking_Detail> PostBookingRoom(@Body Booking_Detail booking_detail);
+
+    @GET("api/bookingDetail/{username}/{bookingID}")
+    Call<Booking_Detail> GetBookingDetail (@Path("username") String username,
+                                           @Path("bookingID") int id);
+
+    @GET("api/bookingDetail/{username}/0")
+    Call<Booking_Detail> GetBookingDetailCart (@Path("username") String username);
+
+    @GET("api/bookingCards/{username}")
+    Call<List<Booking_card>> GetListYourBooking (@Path("username") String username);
+
+
 }

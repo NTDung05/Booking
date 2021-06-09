@@ -29,9 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Profile");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_profile);
         Intent myintent = getIntent();
         Bundle bundle = myintent.getExtras();
@@ -40,8 +38,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         setControl();
-
-
 
         setEvent();
 
@@ -81,16 +77,5 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 }

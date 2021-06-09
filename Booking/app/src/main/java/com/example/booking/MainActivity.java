@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("room", (Serializable) room);
-//                intent.putExtras(bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", customerTest.getUsername());
+               intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.logout){
+        if(item.getItemId() == R.id.Cart){
             dialogSignOut();
         }
         if(item.getItemId() == android.R.id.home){

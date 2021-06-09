@@ -1,5 +1,6 @@
 package com.example.booking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -8,8 +9,12 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.rtt.CivicLocationKeys;
 import android.os.Bundle;
+import android.security.identity.CipherSuiteNotSupportedException;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.MenuItem;
@@ -29,6 +34,7 @@ import com.example.booking.Api.ApiService;
 import com.example.booking.Model.Price;
 import com.example.booking.Model.Room;
 import com.example.booking.Model.Room_type;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,7 +61,8 @@ public class BookingActivity extends AppCompatActivity {
     private int lastSelectedDayOfMonth = myCalendar.get(Calendar.DAY_OF_MONTH);
 
     int date = myCalendar.get(Calendar.DAY_OF_WEEK);
-    ;
+    String recieveAt = "";
+            String backAt ="" ;
     private int lastSelectedDayOfMonthnt = lastSelectedDayOfMonth + 1;
     private List<Room_type> room;
     String type[] = {"Tất cả", "Phòng 1 Giường", "Phòng 2 Giường", "Phòng 3 Giường", "Phòng 4 Giường", "Phòng 5 Giường"};
@@ -65,14 +72,14 @@ public class BookingActivity extends AppCompatActivity {
     private List<Room_type> room3;
     private List<Room_type> room4;
     private List<Room_type> room5;
-
+String name ="";
+BottomNavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Booking");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         room = new ArrayList<>();
         room2 = new ArrayList<>();
         room3 = new ArrayList<>();
@@ -80,7 +87,12 @@ public class BookingActivity extends AppCompatActivity {
         room4 = new ArrayList<>();
         room5 = new ArrayList<>();
 
+        Intent myintent = getIntent();
+        Bundle bundle = myintent.getExtras();
+        if (bundle != null) {
+            name = bundle.getString("name");
 
+        }
         setContentView(R.layout.activity_booking);
 //        room = new ArrayList<>();
 
@@ -93,18 +105,7 @@ public class BookingActivity extends AppCompatActivity {
             setAdapter(room);
 
         }
-        if (count == 1) {
-            setAdapter(room1);
-        } else if (count == 2) {
-            setAdapter(room2);
-        } else if (count == 3) {
-            setAdapter(room3);
-        } else if (count == 4) {
-            setAdapter(room4);
-        } else if (count == 5) {
-            setAdapter(room5);
-        }
-
+//
         setEvent();
     }
 
@@ -137,17 +138,7 @@ public class BookingActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void setControl() {
         btnSearch = (Button) findViewById(R.id.btnSearch);
@@ -155,12 +146,42 @@ public class BookingActivity extends AppCompatActivity {
         lvRoom = (ListView) findViewById(R.id.lvRoom);
         edngaydat = (EditText) findViewById(R.id.edNgaydat);
         edngaytra = (EditText) findViewById(R.id.edNgaytra);
-
+        navigationView = (BottomNavigationView) findViewById(R.id.bottom);
     }
 
 
     public void setEvent() {
+        navigationView.setSelectedItemId(R.id.nav_booking);
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_booking:
+                        Intent intent1 = new Intent(getApplicationContext(), BookingActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.nav_service:
+                        Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.nav_cart:
+                        Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent3);
+                        break;
+                    case R.id.nav_account:
+                        Intent intent4 = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(intent4);
+                        break;
+                }
 
+
+                return true;
+            }
+        });
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,7 +210,7 @@ public class BookingActivity extends AppCompatActivity {
 //                        Date now = new Date();
 //                        int date = myCalendar.get(Calendar.DAY_OF_WEEK);
 //
-
+                          recieveAt = year + "-"+ (monthOfYear+1)+"-"+dayOfMonth;
                         lastSelectedYear = year;
                         lastSelectedMonth = monthOfYear;
                         lastSelectedDayOfMonth = dayOfMonth;
@@ -218,7 +239,7 @@ public class BookingActivity extends AppCompatActivity {
                                           int monthOfYear, int dayOfMonth) {
 
                         edngaytra.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
+                        backAt = year + "-"+ (monthOfYear+1)+"-"+dayOfMonth;
                         lastSelectedYear = year;
                         lastSelectedMonth = monthOfYear;
                         lastSelectedDayOfMonthnt = dayOfMonth;
@@ -247,13 +268,17 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room_type test1 = room1.get(position);
-                            //     Price price1 = new Price(test1.getType(), 1, 5000);
+                            if(recieveAt == null || backAt ==null){
+                                Toast.makeText(getApplicationContext(),"Hãy chọn ngày nhận và ngày trả phòng",Toast.LENGTH_SHORT).show();
+                            }else {
                             Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("test1", test1);
-                            //    bundle.putSerializable("price1", price1);
+                            bundle.putString("recieveAt",recieveAt);
+                            bundle.putString("backAt",backAt);
+                            bundle.putString("name",name);
                             intent.putExtras(bundle);
-                            startActivity(intent);
+                            startActivity(intent);}
                         }
                     });
                 } else if (count == 2) {
@@ -262,12 +287,19 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room_type test1 = room2.get(position);
-                            Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("test1", test1);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if(recieveAt == null || backAt ==null){
+                                Toast.makeText(getApplicationContext(),"Hãy chọn ngày nhận và ngày trả phòng",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test1", test1);
+                                bundle.putString("recieveAt",recieveAt);
+                                bundle.putString("backAt",backAt);
+                                bundle.putString("name",name);
+                                intent.putExtras(bundle);
+                                startActivity(intent);}
                         }
+
                     });
                 } else if (count == 3) {
                     setAdapter(room3);
@@ -275,11 +307,17 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room_type test1 = room3.get(position);
-                            Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("test1", test1);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if(recieveAt == null || backAt ==null){
+                                Toast.makeText(getApplicationContext(),"Hãy chọn ngày nhận và ngày trả phòng",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test1", test1);
+                                bundle.putString("recieveAt",recieveAt);
+                                bundle.putString("backAt",backAt);
+                                bundle.putString("name",name);
+                                intent.putExtras(bundle);
+                                startActivity(intent);}
                         }
                     });
                 } else if (count == 4) {
@@ -288,11 +326,17 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room_type test1 = room4.get(position);
-                            Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("test1", test1);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if(recieveAt == null || backAt ==null){
+                                Toast.makeText(getApplicationContext(),"Hãy chọn ngày nhận và ngày trả phòng",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test1", test1);
+                                bundle.putString("recieveAt",recieveAt);
+                                bundle.putString("backAt",backAt);
+                                bundle.putString("name",name);
+                                intent.putExtras(bundle);
+                                startActivity(intent);}
                         }
                     });
                 } else if (count == 5) {
@@ -301,11 +345,17 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room_type test1 = room5.get(position);
-                            Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("test1", test1);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if(recieveAt == null || backAt ==null){
+                                Toast.makeText(getApplicationContext(),"Hãy chọn ngày nhận và ngày trả phòng",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test1", test1);
+                                bundle.putString("recieveAt",recieveAt);
+                                bundle.putString("backAt",backAt);
+                                bundle.putString("name",name);
+                                intent.putExtras(bundle);
+                                startActivity(intent);}
                         }
                     });
                 } else {
@@ -314,11 +364,17 @@ public class BookingActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Room_type test1 = room.get(position);
-                            Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("test1", test1);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if(recieveAt == null || backAt ==null){
+                                Toast.makeText(getApplicationContext(),"Hãy chọn ngày nhận và ngày trả phòng",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Intent intent = new Intent(getApplicationContext(), RoomDetailActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("test1", test1);
+                                bundle.putString("recieveAt",recieveAt);
+                                bundle.putString("backAt",backAt);
+                                bundle.putString("name",name);
+                                intent.putExtras(bundle);
+                                startActivity(intent);}
                         }
                     });
                 }
@@ -361,23 +417,7 @@ public class BookingActivity extends AppCompatActivity {
             public void onResponse(Call<List<Room_type>> call, Response<List<Room_type>> response) {
                 List<Room_type> temp1 = new ArrayList<>();
                 room = response.body();
-                for (int i = 0; i < room.size(); i++) {
-                    if (room.get(i).getNumber_of_bed() == 1) {
-                        room1.add(room.get(i));
-                    }
-                    if (room.get(i).getNumber_of_bed() == 2) {
-                        room2.add(room.get(i));
-                    }
-                    if (room.get(i).getNumber_of_bed() == 3) {
-                        room3.add(room.get(i));
-                    }
-                    if (room.get(i).getNumber_of_bed() == 4) {
-                        room4.add(room.get(i));
-                    }
-                    if (room.get(i).getNumber_of_bed() == 5) {
-                        room5.add(room.get(i));
-                    }
-                }
+                sort();
                 updateSpinner();
             }
 

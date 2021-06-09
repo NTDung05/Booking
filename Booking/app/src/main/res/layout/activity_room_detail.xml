@@ -39,15 +39,17 @@
         android:layout_height="40dp"
         android:text="Giá: "
         android:textSize="30dp"/>
-    <TextView
-        android:id="@+id/tvSoluong"
-        android:layout_below="@+id/tvGia"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="Số lượng: "
-        android:textSize="30dp"/>
-    <EditText
+
+        <TextView
+            android:id="@+id/tvSoluong"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tvGia"
+            android:layout_marginTop="31dp"
+            android:text="Số lượng: "
+            android:textSize="30dp" />
+
+        <EditText
 
         android:id="@+id/edSoluong"
         android:layout_toRightOf="@+id/tvSoluong"
@@ -59,16 +61,19 @@
         android:textSize="25dp"
         android:textAlignment="center"
         android:background="@drawable/border"
+        android:focusable="false"
+            android:inputType="number"
         />
 
-    <Button
-        android:id="@+id/btThem"
-        android:layout_below="@+id/edSoluong"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="120dp"
-        android:text="Chọn phòng"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/btThem"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/edSoluong"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="15dp"
+            android:text="Chọn phòng" />
+    </RelativeLayout>
 
 
 
