@@ -3,6 +3,7 @@ package com.example.booking;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ public class YourBookingActivity extends AppCompatActivity {
 ListView lvYourBooking;
 YourBookingAdapter customAdapter;
 private List<Booking_card> listYourBooking;
+String  username = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,11 @@ private List<Booking_card> listYourBooking;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_your_booking);
         listYourBooking = new ArrayList<>();
-
+        Intent myintent = getIntent();
+        Bundle bundle = myintent.getExtras();
+        if (bundle != null) {
+            username = bundle.getString("username");
+        }
         setControl();
         callApiListBookingCard();
         setEvent();
@@ -61,7 +67,12 @@ private List<Booking_card> listYourBooking;
                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                      Booking_card cardId = listYourBooking.get(position);
                      Toast.makeText(getApplicationContext(), String.valueOf(cardId.getId()), Toast.LENGTH_SHORT).show();
-
+                     Intent intent = new Intent(getApplicationContext(), YourbookingdetailActivity.class);
+                     Bundle bundle = new Bundle();
+                     bundle.putInt("ID", cardId.getId());
+                     bundle.putString("username",cardId.getUsername());
+                     intent.putExtras(bundle);
+                     startActivity(intent);
                  }
              });
     }
@@ -73,7 +84,7 @@ private List<Booking_card> listYourBooking;
 
     }
     private void callApiListBookingCard(){
-        ApiService.API_SERVICE.GetListYourBooking("tien156").enqueue(new Callback<List<Booking_card>>() {
+        ApiService.API_SERVICE.GetListYourBooking(username).enqueue(new Callback<List<Booking_card>>() {
             @Override
             public void onResponse(Call<List<Booking_card>> call, Response<List<Booking_card>> response) {
                 Toast.makeText(getApplicationContext(), "Hiiiiii", Toast.LENGTH_SHORT).show();

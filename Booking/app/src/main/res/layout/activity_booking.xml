@@ -104,6 +104,7 @@
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/custom_color_bottom"
         app:itemTextColor="@color/custom_color_bottom"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

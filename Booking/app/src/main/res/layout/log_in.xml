@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/ht1"
+    android:background="@drawable/bck_group"
 
     >
     <TextView
@@ -12,17 +13,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HOTEL BOOKING"
-        android:textColor="@color/white"
+        android:textColor="@color/address"
         android:textSize="30dp"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/tvUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="user"
+        android:text="Username"
         android:textSize="25dp"
-        android:textColor="@color/white"
+        android:textColor="@color/address"
         android:layout_marginLeft="35px"
         />
 
@@ -30,7 +31,7 @@
         android:id="@+id/editUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:layout_marginLeft="35px"/>
 
@@ -38,9 +39,9 @@
         android:id="@+id/tvPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="password"
+        android:text="Password"
         android:textSize="25dp"
-        android:textColor="#E8E6E8EC"
+        android:textColor="@color/address"
         android:layout_marginLeft="35px"/>
 
     <EditText
@@ -48,14 +49,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35px"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
+        />
 
     <Button
         android:id="@+id/btnOk"
         android:layout_width="289dp"
         android:layout_height="69dp"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/cardview_compat_inset_shadow"
+        android:layout_marginTop="10dp"
         android:text="Login"
-        android:background="@drawable/btn_log"/>
+        android:textSize="20dp"
+        android:backgroundTint="@color/address"
+        />
+    <EditText
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="25dp"
+        android:text="Register"
+        android:background="@null"
+        android:textAlignment="center"
+        android:layout_marginLeft="35px"/>
+
 </LinearLayout>

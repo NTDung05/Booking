@@ -1,10 +1,15 @@
 package com.example.booking.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Users implements Serializable {
+    @SerializedName("username")
     private String userName;
+    @SerializedName("password")
     private String password;
+    @SerializedName("roleName")
     private String roleName;
 
     public Users(String userName, String password, String roleName) {

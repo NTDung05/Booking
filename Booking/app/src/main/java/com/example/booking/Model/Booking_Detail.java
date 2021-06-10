@@ -1,9 +1,12 @@
 package com.example.booking.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Booking_Detail {
 
    private String username;
-   private int id_type;
+   @SerializedName("typeId")
+   private int typeId;
    private String recieveAt;
    private String backAt;
    private  int amount;
@@ -11,7 +14,7 @@ public class Booking_Detail {
 
    public Booking_Detail(String username, int id_type, String recieveAt, String backAt, int amount) {
       this.username = username;
-      this.id_type = id_type;
+      this.typeId = id_type;
       this.recieveAt = recieveAt;
       this.backAt = backAt;
       this.amount = amount;
@@ -33,11 +36,11 @@ public class Booking_Detail {
    }
 
    public int getId_type() {
-      return id_type;
+      return typeId;
    }
 
    public void setId_type(int id_type) {
-      this.id_type = id_type;
+      this.typeId = id_type;
    }
 
    public String getRecieveAt() {

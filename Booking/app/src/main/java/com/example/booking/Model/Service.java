@@ -1,17 +1,40 @@
 package com.example.booking.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Service {
+    private  int bookingcart_id;
     private int id;
+    @SerializedName("nameService")
     private  String service_name;
     private int price;
+    private int quantity;
 
-    public Service(int id, String service_name, int price) {
+    public Service(int id, String service_name, int price, int quantity) {
         this.id = id;
+
         this.service_name = service_name;
         this.price = price;
+        this.quantity = quantity;
+    }
+
+    public int getBookingcart_id() {
+        return bookingcart_id;
+    }
+
+    public void setBookingcart_id(int bookingcart_id) {
+        this.bookingcart_id = bookingcart_id;
     }
 
     public Service() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getId() {

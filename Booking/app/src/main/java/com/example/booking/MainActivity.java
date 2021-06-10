@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btBooking, btYBooking, btYProfile, btLocation;
     CustomerTest customerTest;
     List<Room_type> room;
+    String username = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("BOOKING HOTEL");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
           customerTest = new CustomerTest();
+          Intent intent = getIntent();
+          username = intent.getStringExtra("username");
         setContentView(R.layout.action_user);
         setControl();
         callApi();
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("name", customerTest.getUsername());
+                bundle.putString("name", "tien156");
                intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -70,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), YourBookingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("username",customerTest.getUsername());
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

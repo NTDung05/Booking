@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.example.booking.Adapter.RoomAdapter;
 import com.example.booking.Api.ApiService;
-import com.example.booking.Model.Price;
+
 import com.example.booking.Model.Room;
 import com.example.booking.Model.Room_type;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

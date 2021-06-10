@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.booking.Api.ApiService;
 import com.example.booking.Model.Booking_Detail;
 import com.example.booking.Model.Customer;
-import com.example.booking.Model.Price;
+
 import com.example.booking.Model.Room;
 import com.example.booking.Model.Room_type;
 import com.squareup.picasso.Picasso;
@@ -49,10 +49,11 @@ public class RoomDetailActivity extends AppCompatActivity {
             backAt = bundle.getString("backAt");
             room = (Room_type) bundle.getSerializable("test1");
 
+
         }
            detail = new Booking_Detail();
         setContentView(R.layout.activity_room_detail);
-        Toast.makeText(getApplicationContext(),recieveAt,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),username,Toast.LENGTH_SHORT).show();
         setControl();
         setEvent();
 }

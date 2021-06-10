@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Room_type  implements Serializable {
+    @SerializedName("id")
      private int id_Type;
      @SerializedName("numberOfBed")
     private int number_of_bed;

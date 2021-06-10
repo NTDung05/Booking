@@ -6,7 +6,9 @@ import com.example.booking.Model.Customer;
 import com.example.booking.Model.CustomerTest;
 import com.example.booking.Model.Room;
 import com.example.booking.Model.Room_type;
+import com.example.booking.Model.Service;
 import com.example.booking.Model.Users;
+import com.example.booking.Model.YBookingDetail;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,6 +36,12 @@ public interface ApiService {
     @GET("api/users/{username}")
     Call<Users> convertUser(@Path("username") String username);
 
+    @POST("api/users")
+    Call<Users> createUser(@Body Users users);
+
+    @POST("api/customers")
+    Call<CustomerTest> createCustomer(@Body CustomerTest customer);
+
     @PUT("api/customers/{username}")
     Call<CustomerTest> UpdateCustomer(@Path("username") int s,
                                       @Body CustomerTest customer);
@@ -45,11 +53,17 @@ public interface ApiService {
     Call<Booking_Detail> PostBookingRoom(@Body Booking_Detail booking_detail);
 
     @GET("api/bookingDetail/{username}/{bookingID}")
-    Call<Booking_Detail> GetBookingDetail (@Path("username") String username,
+    Call<List<YBookingDetail>> GetBookingDetail (@Path("username") String username,
+                                           @Path("bookingID") int id);
+    @GET("api/serviceDetail/{username}/{bookingID}")
+    Call<List<Service>> GetServiceDetail (@Path("username") String username,
                                            @Path("bookingID") int id);
 
-    @GET("api/bookingDetail/{username}/0")
-    Call<Booking_Detail> GetBookingDetailCart (@Path("username") String username);
+//    @GET("api/bookingDetail/{username}/0")
+//    Call<YBookingDetail> GetBookingDetailCart (@Path("username") String username);
+//
+//    @GET("api/bookingDetail/{username}/0")
+//    Call<Service> GetServiceDetailCart (@Path("username") String username);
 
     @GET("api/bookingCards/{username}")
     Call<List<Booking_card>> GetListYourBooking (@Path("username") String username);
