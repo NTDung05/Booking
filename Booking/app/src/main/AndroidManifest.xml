@@ -12,14 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ServiceActivivty"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".CartActivity" />
         <activity android:name=".YourbookingdetailActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".MapsActivity"/>
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".YourBookingActivity" />
         <activity android:name=".BookingActivity" />
         <activity android:name=".RoomDetailActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ChartActivity" />
+        <activity android:name=".BarChartActivity" />
+        <activity android:name=".PieChartActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

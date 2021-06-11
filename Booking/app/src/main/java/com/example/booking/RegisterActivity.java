@@ -2,6 +2,7 @@ package com.example.booking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -82,6 +83,9 @@ public class RegisterActivity extends AppCompatActivity {
                         customer.setLastName(et_lastname.getText().toString());
                         customer.setPhone(etMobile.getText().toString());
                         CreateCustomer();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("name",customer.getUsername());
+                        startActivity(intent);
                         Toast.makeText(getApplicationContext()
                                 ,"Form valid successfull...",Toast.LENGTH_SHORT).show();
                     }else{

@@ -4,30 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".YourbookingdetailActivity"
+    tools:context=".CartActivity"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tbLayout"
+        android:id="@+id/tbLayout1"
         app:tabSelectedTextColor="@color/yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-<androidx.viewpager.widget.ViewPager
-    android:id="@+id/viewPager"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/Confirm"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="confirm"
-        android:textSize="20dp"
 
-        android:backgroundTint="@color/followers"/>
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/custom_color_bottom"
+        app:itemTextColor="@color/custom_color_bottom"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation" />
 </RelativeLayout>

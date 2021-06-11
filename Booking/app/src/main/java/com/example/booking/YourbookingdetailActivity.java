@@ -31,6 +31,15 @@ public class YourbookingdetailActivity extends AppCompatActivity {
  private ViewPager viewPager;
  private int id;
  private String username ;
+ private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -65,8 +74,10 @@ public class YourbookingdetailActivity extends AppCompatActivity {
 
           int  id1 = bundle.getInt("ID");
           String  username1= bundle.getString("username");
+          String status1 = bundle.getString("status");
           setId(id1);
           setUsername(username1);
+          setStatus(status1);
         }
         Toast.makeText(this,username,Toast.LENGTH_LONG).show();
         setEvent();

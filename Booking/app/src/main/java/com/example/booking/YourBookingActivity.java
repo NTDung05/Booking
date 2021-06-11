@@ -71,6 +71,7 @@ String  username = "";
                      Bundle bundle = new Bundle();
                      bundle.putInt("ID", cardId.getId());
                      bundle.putString("username",cardId.getUsername());
+                     bundle.putString("status",cardId.getStatus());
                      intent.putExtras(bundle);
                      startActivity(intent);
                  }

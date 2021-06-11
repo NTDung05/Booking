@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
           customerTest = new CustomerTest();
           Intent intent = getIntent();
-          username = intent.getStringExtra("username");
+          username = intent.getStringExtra("name");
         setContentView(R.layout.action_user);
         setControl();
         callApi();
@@ -63,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("name", "tien156");
-               intent.putExtras(bundle);
+                intent.putExtra("name", username);
                 startActivity(intent);
             }
         });
@@ -134,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private  void callApi(){
 
-        ApiService.API_SERVICE.convertCustomer("tien156").enqueue(new Callback<CustomerTest>() {
+        ApiService.API_SERVICE.convertCustomer(username).enqueue(new Callback<CustomerTest>() {
 
             @Override
             public void onResponse(Call<CustomerTest> call, Response<CustomerTest> response ) {

@@ -3,9 +3,11 @@ package com.example.booking.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class Service {
+    @SerializedName("bookingId")
     private  int bookingcart_id;
+    @SerializedName("serviceId")
     private int id;
-    @SerializedName("nameService")
+    @SerializedName("serviceName")
     private  String service_name;
     private int price;
     private int quantity;
@@ -16,6 +18,12 @@ public class Service {
         this.service_name = service_name;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public Service(int id, String service_name, int price) {
+        this.id = id;
+        this.service_name = service_name;
+        this.price = price;
     }
 
     public int getBookingcart_id() {

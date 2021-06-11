@@ -64,9 +64,14 @@ public class LoginActivity extends AppCompatActivity {
                if(customerTest != null ) {
                    if (editUser.getText().toString().equals(customerTest.getUserName()) && editPassword.getText().toString().equals(customerTest.getPassword())) {
                        Toast.makeText(getApplicationContext(), "login ok", Toast.LENGTH_SHORT).show();
+                       if(customerTest.getRoleName().equals("Customer")){
                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                       intent.putExtra("username",customerTest.getUserName());
-                       startActivity(intent);
+                       intent.putExtra("name",customerTest.getUserName());
+                       startActivity(intent);}
+                       else {
+                             Intent intent1 = new Intent(getApplicationContext(),ChartActivity.class);
+                             startActivity(intent1);
+                       }
                    } else
                        Toast.makeText(getApplicationContext(), "login ko thnh công", Toast.LENGTH_SHORT).show();
 

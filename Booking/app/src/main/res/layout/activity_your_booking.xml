@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Lịch sử đặt phòng"
-        android:textSize="40dp"
+        android:text="History Booking"
+        android:textSize="37dp"
         android:textColor="@color/teal_700"/>
 
     <ListView

@@ -88,11 +88,8 @@ BottomNavigationView navigationView;
         room5 = new ArrayList<>();
 
         Intent myintent = getIntent();
-        Bundle bundle = myintent.getExtras();
-        if (bundle != null) {
-            name = bundle.getString("name");
+        name = myintent.getStringExtra("name");
 
-        }
         setContentView(R.layout.activity_booking);
 //        room = new ArrayList<>();
 
@@ -158,22 +155,27 @@ BottomNavigationView navigationView;
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("name",name);
                         startActivity(intent);
                         break;
                     case R.id.nav_booking:
                         Intent intent1 = new Intent(getApplicationContext(), BookingActivity.class);
+                        intent1.putExtra("name",name);
                         startActivity(intent1);
                         break;
                     case R.id.nav_service:
-                        Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent2 = new Intent(getApplicationContext(), ServiceActivivty.class);
+                        intent2.putExtra("name",name);
                         startActivity(intent2);
                         break;
                     case R.id.nav_cart:
-                        Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent3 = new Intent(getApplicationContext(), CartActivity.class);
+                        intent3.putExtra("name",name);
                         startActivity(intent3);
                         break;
                     case R.id.nav_account:
                         Intent intent4 = new Intent(getApplicationContext(), ProfileActivity.class);
+                        intent4.putExtra("name",name);
                         startActivity(intent4);
                         break;
                 }

@@ -1,9 +1,13 @@
 package com.example.booking.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class YBookingDetail implements Serializable {
+    @SerializedName("bookingId")
     private int bookingcart_id;
+    @SerializedName("typeId")
     private  int idType;
     private String nameType;
     private int numberOfBed;
