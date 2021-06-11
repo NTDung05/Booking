@@ -92,7 +92,7 @@ private  void setEvent(){
         Picasso.with(getApplicationContext())
                 .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-04.jpg")
                 .into(imgAva1);}
-    if(room.getName().equals("Suite")){
+    if(room.getName().equals("Connecting")){
         Picasso.with(getApplicationContext())
                 .load("https://www.hoteljob.vn/files/Anh-Hoteljob-Ni/Nam-2021/Thang-3/Cac-lo%E1%BA%A1i-phong-khach-san-05.jpg")
                 .into(imgAva1);}
@@ -118,12 +118,12 @@ private void PostRoomDetail(){
     ApiService.API_SERVICE.PostBookingRoom(detail).enqueue(new Callback<Booking_Detail>() {
         @Override
         public void onResponse(Call<Booking_Detail> call, Response<Booking_Detail> response) {
-            Toast.makeText(getApplicationContext(), "Chọn Phòng Thành Công", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Thử lại", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onFailure(Call<Booking_Detail> call, Throwable t) {
-            Toast.makeText(getApplicationContext(), "Thử lại", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Chọn Phòng Thành Công", Toast.LENGTH_LONG).show();
         }
     });
 }

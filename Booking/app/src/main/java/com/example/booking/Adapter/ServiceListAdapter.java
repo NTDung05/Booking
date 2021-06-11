@@ -14,6 +14,7 @@ import com.example.booking.Model.Room_type;
 import com.example.booking.Model.Service;
 import com.example.booking.R;
 import com.example.booking.ServiceActivivty;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -74,7 +75,18 @@ public class ServiceListAdapter extends BaseAdapter {
         holder.tvNameService.setText(service.getService_name().toString());
 
         holder.tvPrice.setText(String.valueOf(service.getPrice()));
-
+        if(service.getService_name().equals("Ăn sáng")){
+            Picasso.with(context)
+                    .load("https://photo-cms-sggp.zadn.vn/w840/Uploaded/2021/evofjasfzyr/2020_05_12/banh-da-cua-kieu-rex-7_cklv.jpg")
+                    .into(holder.imgIcon);}
+        if(service.getService_name().equals("Giặt ủi")){
+            Picasso.with(context)
+                    .load("https://khachsansky.net/wp-content/uploads/2021/04/giatui3-min.jpg")
+                    .into(holder.imgIcon);}
+        if(service.getService_name().equals("Nước uống")){
+            Picasso.with(context)
+                    .load("https://doanhnhanplus.vn/wp-content/uploads/2019/03/dnp-5-loai-nuoc-uong-giai-nhiet-mua-he-link-280319-ok-750x456.jpg")
+                    .into(holder.imgIcon);}
         holder.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

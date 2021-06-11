@@ -89,9 +89,7 @@ public class ServiceActivivty extends AppCompatActivity {
                 return true;
             }
         });
-//        listService.add(new Service(1,"Mi Xao Tao Quan",100000));
-//        listService.add(new Service(2,"Ha Thien lon",10000));
-//        listService.add(new Service(3,"Chim Cut",1000));
+
 
     }
 

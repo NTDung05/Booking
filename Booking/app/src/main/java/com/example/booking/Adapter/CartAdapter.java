@@ -111,12 +111,12 @@ private void deleteRoom(){
     ApiService.API_SERVICE.DeleteRoom(getBookingID(),getIdRoom()).enqueue(new Callback<YBookingDetail>() {
         @Override
         public void onResponse(Call<YBookingDetail> call, Response<YBookingDetail> response) {
-            Toast.makeText(context.getContext(),"hehe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getContext(),"Xoá thành công", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onFailure(Call<YBookingDetail> call, Throwable t) {
-
+            Toast.makeText(context.getContext(),"Thử L", Toast.LENGTH_SHORT).show();
         }
     });
 }

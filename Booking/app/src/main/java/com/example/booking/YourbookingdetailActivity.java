@@ -1,5 +1,6 @@
 package com.example.booking;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -7,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.booking.Adapter.ViewPagerAdapter;
@@ -61,7 +63,9 @@ public class YourbookingdetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yourbookingdetail);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("YourBooking");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     //    sendDataService();
      //   sendData();
         ViewPagerAdapter viewPagerAdapter =new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -82,7 +86,16 @@ public class YourbookingdetailActivity extends AppCompatActivity {
         Toast.makeText(this,username,Toast.LENGTH_LONG).show();
         setEvent();
     }
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void setControl(){
         mTabLayout = (TabLayout)findViewById(R.id.tbLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);

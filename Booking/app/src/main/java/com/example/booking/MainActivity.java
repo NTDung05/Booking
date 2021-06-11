@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
         btLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ServiceActivivty.class);
+                intent.putExtra("name", username);
                 startActivity(intent);
             }
         });
@@ -119,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+
                 dialog.dismiss();
             }
         });

@@ -22,47 +22,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="bottom"
-                android:text="Ngày nhận phòng"
+                android:text="Chọn năm thống kê"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtTuNgay"
+                android:id="@+id/edtYear"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:focusable="false" />
+                android:inputType="number"
+                 />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="159dp"
-                android:layout_height="40dp"
-                android:gravity="bottom"
-                android:text="Ngày trả phòng"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/edtToiNgay"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:focusable="false" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/btnBarChart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thống kê theo phòng"/>
+            android:text="Thống kê doanh thu"
+            android:backgroundTint="@color/teal_700"/>
 
         <Button
             android:id="@+id/btnPieChart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thống kê theo dịch vụ"/>
+            android:text="Thống kê theo dịch vụ"
+            android:backgroundTint="@color/teal_700"/>
     </LinearLayout>
 </RelativeLayout>

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         />
     <Button
+        android:visibility="invisible"
         android:id="@+id/btConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

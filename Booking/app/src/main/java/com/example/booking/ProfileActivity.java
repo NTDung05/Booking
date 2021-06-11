@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     Customer customer;
    private    CustomerTest customerTest;
     BottomNavigationView navigationView;
+    String name ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Intent myintent = getIntent();
         Bundle bundle = myintent.getExtras();
+        name = myintent.getStringExtra("name");
         if (bundle != null) {
             customerTest = (CustomerTest) bundle.getSerializable("customer");
         }
@@ -59,25 +61,31 @@ public class ProfileActivity extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("name", name);
                         startActivity(intent);
                         break;
                     case R.id.nav_booking:
                         Intent intent1 = new Intent(getApplicationContext(), BookingActivity.class);
+                        intent1.putExtra("name", name);
                         startActivity(intent1);
                         break;
                     case R.id.nav_service:
-                        Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent2 = new Intent(getApplicationContext(), ServiceActivivty.class);
+                        intent2.putExtra("name", name);
                         startActivity(intent2);
                         break;
                     case R.id.nav_cart:
-                        Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent3 = new Intent(getApplicationContext(), CartActivity.class);
+                        intent3.putExtra("name", name);
                         startActivity(intent3);
                         break;
                     case R.id.nav_account:
                         Intent intent4 = new Intent(getApplicationContext(), ProfileActivity.class);
+                        intent4.putExtra("name", name);
                         startActivity(intent4);
                         break;
                 }

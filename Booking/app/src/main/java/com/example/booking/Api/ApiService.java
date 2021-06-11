@@ -4,6 +4,7 @@ import com.example.booking.Model.Booking_Detail;
 import com.example.booking.Model.Booking_card;
 import com.example.booking.Model.Customer;
 import com.example.booking.Model.CustomerTest;
+import com.example.booking.Model.Month;
 import com.example.booking.Model.Room;
 import com.example.booking.Model.Room_type;
 import com.example.booking.Model.Service;
@@ -55,6 +56,9 @@ public interface ApiService {
 
     @POST("api/serviceDetail")
     Call<Service_detail> PostService(@Body Service_detail service);
+
+    @GET("api/bookingCards")
+    Call<Month>  GetChart(@Query("year") int year);
 
     @GET("api/types/{time}")
     Call<List<Room_type>> GetListTypeRoom(@Path("time") int time);

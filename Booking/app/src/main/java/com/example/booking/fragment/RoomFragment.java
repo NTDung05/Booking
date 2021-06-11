@@ -117,9 +117,12 @@ public class RoomFragment extends Fragment {
         booking_details = new ArrayList<>();
         btConfirm = (Button)view.findViewById(R.id.btConfirm);
         callApiListRoom();
+        Toast.makeText(getContext(), status, Toast.LENGTH_SHORT).show();
+        if(status.equals("Reservated")){
+            btConfirm.setVisibility(View.VISIBLE);
+              btConfirm.setText("Cancel");
+        }
 
-        if(!status.equals("Reservated")){
-            btConfirm.setVisibility(View.INVISIBLE);}
         btConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +130,7 @@ public class RoomFragment extends Fragment {
 
             }
         });
+
 
 
         return view;

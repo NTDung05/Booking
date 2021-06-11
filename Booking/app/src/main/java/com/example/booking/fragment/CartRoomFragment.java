@@ -15,7 +15,9 @@ import com.example.booking.Adapter.CartAdapter;
 import com.example.booking.Adapter.YourBookingRoomDetailAdapter;
 import com.example.booking.Api.ApiService;
 import com.example.booking.CartActivity;
+import com.example.booking.JavaMailAPI;
 import com.example.booking.Model.Booking_card;
+import com.example.booking.Model.CustomerTest;
 import com.example.booking.Model.YBookingDetail;
 import com.example.booking.R;
 import com.example.booking.YourbookingdetailActivity;
@@ -107,14 +109,51 @@ public class CartRoomFragment extends Fragment {
         booking_details = new ArrayList<>();
 
         callApiListRoom();
+        btConfirm.setVisibility(View.VISIBLE);
         btConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChangeStatus();
+                callApi();
             }
         });
         return view;
     }
+
+
+
+public void sendMail(CustomerTest t1){
+        String mEmail = t1.getEmail();
+        String mMess = "Xác nhận đặt phòng thành công";
+        String mSubject = "Mail xác nhận";
+
+    JavaMailAPI javaMailAPI =new JavaMailAPI(getContext(), mEmail, mSubject , mMess);
+    javaMailAPI.execute();
+    }
+
+
+    private  void callApi(){
+
+        ApiService.API_SERVICE.convertCustomer(username).enqueue(new Callback<CustomerTest>() {
+
+            @Override
+            public void onResponse(Call<CustomerTest> call, Response<CustomerTest> response ) {
+                Toast.makeText(getContext(), "Thành công", Toast.LENGTH_LONG).show();
+
+             CustomerTest   customerTest  = response.body();
+              sendMail(customerTest);
+
+
+
+            }
+            @Override
+            public void onFailure(Call<CustomerTest> call, Throwable t) {
+                Toast.makeText(getContext(), "Fail", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
     public void setAdapter(List<YBookingDetail> hi){
         adapter = new CartAdapter(this,
                 R.layout.custom_bookingcart, hi);
