@@ -43,11 +43,11 @@
             android:text="Thống kê doanh thu"
             android:backgroundTint="@color/teal_700"/>
 
-        <Button
-            android:id="@+id/btnPieChart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Thống kê theo dịch vụ"
-            android:backgroundTint="@color/teal_700"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnPieChart"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Thống kê theo dịch vụ"-->
+<!--            android:backgroundTint="@color/teal_700"/>-->
     </LinearLayout>
 </RelativeLayout>

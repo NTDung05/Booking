@@ -124,8 +124,8 @@ public class CartRoomFragment extends Fragment {
 
 public void sendMail(CustomerTest t1){
         String mEmail = t1.getEmail();
-        String mMess = "Xác nhận đặt phòng thành công";
-        String mSubject = "Mail xác nhận";
+        String mMess = "Xác nhận đặt phòng thành công. \n Số HĐ là: "+ String.valueOf(getBookingID());
+        String mSubject = "Mail xác nhận ";
 
     JavaMailAPI javaMailAPI =new JavaMailAPI(getContext(), mEmail, mSubject , mMess);
     javaMailAPI.execute();

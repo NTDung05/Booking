@@ -395,13 +395,13 @@ BottomNavigationView navigationView;
         count = spTypeRoom.getSelectedItemPosition();
         int count1 = spTypeRoom.getSelectedItemPosition();
         String c = String.valueOf(count1);
-        Toast.makeText(getApplicationContext(), c, Toast.LENGTH_SHORT).show();
+
         if (count == 1) {
             setAdapter(room1);
-            Toast.makeText(getApplicationContext(), "122", Toast.LENGTH_SHORT).show();
+
         } else if (count1 == 2) {
             setAdapter(room2);
-            Toast.makeText(getApplicationContext(), "125", Toast.LENGTH_SHORT).show();
+
         } else if (count1 == 3) {
             setAdapter(room3);
         } else if (count1 == 4) {

@@ -53,7 +53,7 @@ public class RoomDetailActivity extends AppCompatActivity {
         }
            detail = new Booking_Detail();
         setContentView(R.layout.activity_room_detail);
-        Toast.makeText(getApplicationContext(),username,Toast.LENGTH_SHORT).show();
+
         setControl();
         setEvent();
 }

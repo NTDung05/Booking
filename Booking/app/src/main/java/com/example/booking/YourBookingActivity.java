@@ -66,7 +66,7 @@ String  username = "";
                  @Override
                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                      Booking_card cardId = listYourBooking.get(position);
-                     Toast.makeText(getApplicationContext(), String.valueOf(cardId.getId()), Toast.LENGTH_SHORT).show();
+
                      Intent intent = new Intent(getApplicationContext(), YourbookingdetailActivity.class);
                      Bundle bundle = new Bundle();
                      bundle.putInt("ID", cardId.getId());
@@ -88,14 +88,14 @@ String  username = "";
         ApiService.API_SERVICE.GetListYourBooking(username).enqueue(new Callback<List<Booking_card>>() {
             @Override
             public void onResponse(Call<List<Booking_card>> call, Response<List<Booking_card>> response) {
-                Toast.makeText(getApplicationContext(), "Hiiiiii", Toast.LENGTH_SHORT).show();
+
                 listYourBooking = response.body();
                 setAdapter();
             }
 
             @Override
             public void onFailure(Call<List<Booking_card>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "try this", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

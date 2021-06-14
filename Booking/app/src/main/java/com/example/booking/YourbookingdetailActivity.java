@@ -83,7 +83,7 @@ public class YourbookingdetailActivity extends AppCompatActivity {
           setUsername(username1);
           setStatus(status1);
         }
-        Toast.makeText(this,username,Toast.LENGTH_LONG).show();
+
         setEvent();
     }
     public boolean onOptionsItemSelected(MenuItem item) {

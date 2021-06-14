@@ -47,7 +47,7 @@ public class ServiceActivivty extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent myintent = getIntent();
         name= myintent.getStringExtra("name");
-        Toast.makeText(getApplicationContext(),name, Toast.LENGTH_SHORT).show();
+
     detail = new Service_detail();
         navigationView = (BottomNavigationView) findViewById(R.id.bottom);
         lvService = (ListView) findViewById(R.id.lvService);
@@ -147,12 +147,12 @@ public class ServiceActivivty extends AppCompatActivity {
             public void onResponse(Call<List<Service>> call, Response<List<Service>> response) {
                 listService = response.body();
                 setAdapter();
-                Toast.makeText(getApplicationContext()," ok", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onFailure(Call<List<Service>> call, Throwable t) {
-                Toast.makeText(getApplicationContext()," no", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

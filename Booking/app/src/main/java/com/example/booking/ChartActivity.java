@@ -36,7 +36,7 @@ Month month;
     }
     private void setControl(){
         btnBarChart = (Button)findViewById(R.id.btnBarChart);
-        btnPieChart =(Button)findViewById(R.id.btnPieChart);
+       // btnPieChart =(Button)findViewById(R.id.btnPieChart);
         edtYear = (EditText)findViewById(R.id.edtYear);
 
     }
@@ -45,19 +45,19 @@ Month month;
 
     private  void setEvent(){
         year=edtYear.getText().toString();
-        btnPieChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                year=edtYear.getText().toString();
-
-
-                Intent intent = new Intent(getApplicationContext(),PieChartActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("year", year);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+//        btnPieChart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                year=edtYear.getText().toString();
+//
+//
+//                Intent intent = new Intent(getApplicationContext(),PieChartActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("year", year);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }
+//        });
         btnBarChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
