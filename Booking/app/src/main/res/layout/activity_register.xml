@@ -86,7 +86,16 @@
         android:layout_marginTop="10dp"
         android:background="@android:color/white"
         />
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_cmnd"
+        android:padding="10dp"
+        android:hint="CMND"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        />
 
     <Button
         android:layout_width="match_parent"

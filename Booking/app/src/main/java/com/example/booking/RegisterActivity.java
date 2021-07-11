@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
 
 
-        EditText etName,etPassword,etMobile,etEmail,etConfirmPassword,et_firstname,et_lastname;
+        EditText etName,etPassword,etMobile,etEmail,etConfirmPassword,et_firstname,et_lastname ,et_cmnd;
         Button btSubmit;
         AwesomeValidation awesomeValidation;
         Users users;
@@ -45,24 +45,25 @@ public class RegisterActivity extends AppCompatActivity {
             etPassword = (EditText) findViewById(R.id.et_password);
             etConfirmPassword =(EditText) findViewById(R.id.et_confirm_password);
             btSubmit= (Button) findViewById(R.id.bt_submit);
+            et_cmnd = (EditText)findViewById(R.id.et_cmnd);
 
             awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
             //add valid name
             awesomeValidation.addValidation(this,R.id.et_name,
                     RegexTemplate.NOT_EMPTY,R.string.invalid_name);
-//            //add valid Phone
-//            awesomeValidation.addValidation(this,R.id.et_mobile,
-//                    "[0-9]{1}[0-9]{9}$",R.string.ivalid_mobile);
-//            //for email
-//            awesomeValidation.addValidation(this,R.id.et_email,
-//                    Patterns.EMAIL_ADDRESS, R.string.invalid_email);
-//            //for password
-//            awesomeValidation.addValidation(this,R.id.et_password,
-//                    ".{6,}",R.string.invalid_password);
-//            //for confirmpass
-//            awesomeValidation.addValidation(this,R.id.et_confirm_password,
-//                    R.id.et_password,R.string.invalid_confirm_password);
-//            //btn
+            //add valid Phone
+            awesomeValidation.addValidation(this,R.id.et_mobile,
+                    "[0-9]{1}[0-9]{9}$",R.string.ivalid_mobile);
+            //for email
+            awesomeValidation.addValidation(this,R.id.et_email,
+                    Patterns.EMAIL_ADDRESS, R.string.invalid_email);
+            //for password
+            awesomeValidation.addValidation(this,R.id.et_password,
+                    ".{6,}",R.string.invalid_password);
+            //for confirmpass
+            awesomeValidation.addValidation(this,R.id.et_confirm_password,
+                    R.id.et_password,R.string.invalid_confirm_password);
+            //btn
 
 
             btSubmit.setOnClickListener(new View.OnClickListener() {
@@ -82,9 +83,11 @@ public class RegisterActivity extends AppCompatActivity {
                         customer.setFirstName(et_firstname.getText().toString());
                         customer.setLastName(et_lastname.getText().toString());
                         customer.setPhone(etMobile.getText().toString());
+                        customer.setCmnd(et_cmnd.getText().toString());
                         CreateCustomer();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("name",customer.getUsername());
+
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
                         startActivity(intent);
                         Toast.makeText(getApplicationContext()
                                 ,"Form valid successfull...",Toast.LENGTH_SHORT).show();

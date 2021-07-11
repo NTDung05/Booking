@@ -23,9 +23,9 @@
         <activity android:name=".BookingActivity" />
         <activity android:name=".RoomDetailActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".ChartActivity" />
         <activity android:name=".BarChartActivity" />
         <activity android:name=".PieChartActivity" />
+        <activity android:name=".ChartActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

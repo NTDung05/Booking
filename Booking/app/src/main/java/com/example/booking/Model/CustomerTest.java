@@ -8,7 +8,7 @@ public class CustomerTest implements  Serializable {
     private String phone;
     private String email;
     private String username;
-
+    private String cmnd;
     public CustomerTest() {
     }
 
@@ -22,6 +22,24 @@ public class CustomerTest implements  Serializable {
 //                ", username='" + username + '\'' +
 //                '}';
 //    }
+
+    public CustomerTest(String firstName, String lastName, String phone, String email, String username, String cmnd) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.username = username;
+        this.cmnd = cmnd;
+    }
+
+    public String getCmnd() {
+        return cmnd;
+    }
+
+    public void setCmnd(String cmnd) {
+        this.cmnd = cmnd;
+    }
+
 
     public CustomerTest(String firstName, String lastName, String phone, String email, String username) {
         this.firstName = firstName;

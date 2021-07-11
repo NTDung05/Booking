@@ -31,7 +31,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 //{{host}}api/customers/tien156
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-     ApiService API_SERVICE = new Retrofit.Builder().baseUrl("http://192.168.1.9:8082/")
+     ApiService API_SERVICE = new Retrofit.Builder().baseUrl("http://192.168.1.4:8082/")
              .addConverterFactory(GsonConverterFactory.create(gson)).build().create(ApiService.class);
       @GET("api/customers/{username}")
      Call<CustomerTest> convertCustomer(@Path("username") String username);
@@ -39,8 +39,13 @@ public interface ApiService {
     @GET("api/users/{username}")
     Call<Users> convertUser(@Path("username") String username);
 
+
+
     @POST("api/users")
     Call<Users> createUser(@Body Users users);
+
+    @POST("api/auth/signin")
+    Call<Boolean> signIn(@Body Users users);
 
     @POST("api/customers")
     Call<CustomerTest> createCustomer(@Body CustomerTest customer);

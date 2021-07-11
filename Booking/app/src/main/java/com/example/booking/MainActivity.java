@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), YourBookingActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("username",customerTest.getUsername());
+                bundle.putString("username",username);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

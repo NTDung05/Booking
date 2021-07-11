@@ -89,11 +89,12 @@ public void set(){
             public void onResponse(Call<Month> call, Response<Month> response) {
              month = response.body();
                set();
+                Toast.makeText(getApplicationContext(), "Thanh cong" ,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Month> call, Throwable t) {
-
+                 Toast.makeText(getApplicationContext(), "Fail" ,Toast.LENGTH_SHORT).show();
             }
         });
     }
